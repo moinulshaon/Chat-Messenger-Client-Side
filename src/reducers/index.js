@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import reducerUser from "./reducerUser";
-import showActiveUsers from "./reducerShowActiveUsers";
+import reducerActiveUsersShown from "./reducerActiveUsersShown";
+import reducerActiveUsers from "./reducerActiveUsers";
 
 const rootReducer = combineReducers({
     user: reducerUser,
-    showActiveUsers: showActiveUsers
+    activeUsersShown: reducerActiveUsersShown,
+    activeUsers: reducerActiveUsers
 });
 
 export default rootReducer;
