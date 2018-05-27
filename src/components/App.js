@@ -8,17 +8,17 @@ import ChatAppBar from "./ChatAppBar";
 import ActiveUsersDrawer from "./ActiveUsersDrawer";
 
 class App extends Component {
-  render() {
-    const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
-    return (
-      <Provider store={createStoreWithMiddleware(reducers)}>
-        <div className="App">
-          <ChatAppBar />
-          <ActiveUsersDrawer />
-        </div>
-      </Provider>
-    );
-  }
+    render() {
+        const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+        return (
+            <Provider store={createStoreWithMiddleware(reducers)}>
+                <div className="App">
+                    <ChatAppBar />
+                    <ActiveUsersDrawer />
+                </div>
+            </Provider>
+        );
+    }
 }
 
 export default App;
