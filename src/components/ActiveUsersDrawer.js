@@ -2,22 +2,17 @@ import React, { Component } from "react";
 import Drawer from "@material-ui/core/Drawer";
 import ChatAvatar from "./ChatAvatar";
 import { connect } from "react-redux";
-import { showActiveUsers, updateActiveUsers } from "../actions";
 import { withStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 class ActiveUsersDrawer extends Component {
-    constructor(props) {
-        super(props);
-        this.visible = false;
-    }
 
     renderActiveUsers(users) {
         const { classes } = this.props;
         return users.map(user => {
             return (
-                <div className={classes.drawerElement}>
-                    <ChatAvatar key={user.userId} avatarName={user.userName} />
+                <div key={user.userId} className={classes.drawerElement}>
+                    <ChatAvatar avatarName={user.userName} />
                 </div>
             );
         });
@@ -35,10 +30,6 @@ class ActiveUsersDrawer extends Component {
         if (show !== true) {
             return "";
         }
-        if (!this.visible) {
-            this.props.updateActiveUsers();
-        }
-        this.visible = true;
 
         return (
             <Drawer
@@ -46,11 +37,10 @@ class ActiveUsersDrawer extends Component {
                 anchor="right"
                 open={show}
                 onClose={() => {
-                    this.props.showActiveUsers(false);
-                    this.visible = false;
+                    this.props.onClose();
                 }}
             >
-                {activeUsers == null || activeUsers.length === 0
+                {activeUsers == null
                     ? this.renderLoadingIcon()
                     : this.renderActiveUsers(activeUsers)}
             </Drawer>
@@ -60,7 +50,6 @@ class ActiveUsersDrawer extends Component {
 
 function mapStateToProps(state) {
     return {
-        show: state.activeUsersShown,
         activeUsers: state.activeUsers
     };
 }
@@ -73,7 +62,7 @@ const styles = {
 };
 
 export default withStyles(styles)(
-    connect(mapStateToProps, { showActiveUsers, updateActiveUsers })(
+    connect(mapStateToProps)(
         ActiveUsersDrawer
     )
 );

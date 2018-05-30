@@ -6,33 +6,57 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Toolbar from "@material-ui/core/Toolbar";
-
-import { showActiveUsers } from "../actions";
+import ActiveUsersDrawer from "./ActiveUsersDrawer";
+import { updateActiveUsers } from "../actions";
 
 class ChatAppBar extends Component {
-    render() {
-        const { user, classes, showActiveUsers } = this.props;
-        return (
-            <AppBar position="static" className={classes.AppBar}>
-                <Toolbar>
-                    <Typography
-                        variant="title"
-                        color="inherit"
-                        className={classes.content}
-                    >
-                        {user}
-                    </Typography>
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeUserShown: false
+        }
+    }
 
-                    <IconButton
-                        className={classes.activeUsersButton}
-                        color="inherit"
-                        aria-label="activeUserButton"
-                        onClick={() => showActiveUsers(true)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                </Toolbar>
-            </AppBar>
+    openActiveUsersDrawer() {
+        this.setState({
+            activeUserShown: true
+        });
+        this.props.updateActiveUsers();
+    }
+
+    closeActiveUsersDrawer() {
+        this.setState({
+            activeUserShown: false
+        });
+    }
+
+    render() {
+        const { user, classes } = this.props;
+        return (
+            <div>
+                <AppBar position="static" className={classes.AppBar}>
+                    <Toolbar>
+                        <Typography
+                            variant="title"
+                            color="inherit"
+                            className={classes.content}
+                        >
+                            {user}
+                        </Typography>
+
+                        <IconButton
+                            className={classes.activeUsersButton}
+                            color="inherit"
+                            aria-label="activeUserButton"
+                            onClick={() => this.openActiveUsersDrawer()}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                    </Toolbar>
+                </AppBar>
+
+                <ActiveUsersDrawer show={this.state.activeUserShown} onClose={()=>this.closeActiveUsersDrawer()}/>
+            </div>
         );
     }
 }
@@ -57,5 +81,5 @@ const styles = {
 };
 
 export default withStyles(styles)(
-    connect(mapStateToProps, { showActiveUsers })(ChatAppBar)
+    connect(mapStateToProps, { updateActiveUsers })(ChatAppBar)
 );
