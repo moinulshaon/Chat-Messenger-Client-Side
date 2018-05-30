@@ -2,7 +2,7 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 
-const chatAvatar = ({ avatarName, classes }) => {
+const chatAvatar = ({ avatarName, subText, classes }) => {
     return (
         <div className={classes.chatAvatar}>
             <Avatar className={classes.avatarIcon}>
@@ -27,10 +27,6 @@ const styles = {
         alignItems: "center",
         padding: 5,
         margin: 2,
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderColor: "grey",
-        backgroundColor: "gainsboro",
         cursor: "pointer"
     },
     avatarIcon: {

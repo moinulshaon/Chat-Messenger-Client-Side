@@ -20,8 +20,8 @@ class ActiveUsersDrawer extends Component {
     renderLoadingIcon(users) {
         const { classes } = this.props;
         return (
-            <div className={classes.drawerElement}>
-                <CircularProgress />
+            <div className={[classes.drawerElement].join(' ')}>
+                <CircularProgress className={classes.loadingIcon}/>
             </div>
         );
     }
@@ -56,8 +56,12 @@ function mapStateToProps(state) {
 
 const styles = {
     drawerElement: {
-        width: 400,
-        textAlign: "center"
+        width: 400
+    },
+    loadingIcon: {
+        position: 'absolute',
+        top: '50%',
+        left: '45%'
     }
 };
 
