@@ -6,6 +6,7 @@ import promise from "redux-promise";
 import reducers from "../reducers/index";
 import ChatAppBar from "./ChatAppBar";
 import UserDialogue from "./UserDialogue";
+import ChatWindow from "./ChatWindow";
 
 class App extends Component {
     render() {
@@ -15,6 +16,7 @@ class App extends Component {
                 <div className="App">
                     <UserDialogue />
                     <ChatAppBar />
+                    <ChatWindow />
                 </div>
             </Provider>
         );

@@ -9,6 +9,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import ActiveUsersDrawer from "./ActiveUsersDrawer";
 import { updateActiveUsers } from "../actions";
 
+import {setUpWebSocket} from "../actions";
+
 class ChatAppBar extends Component {
     constructor(props) {
         super(props);
@@ -59,6 +61,12 @@ class ChatAppBar extends Component {
             </div>
         );
     }
+    componentDidUpdate(prvProps, prvState) {
+        if (this.props.user!==null && this.props.user !== prvProps.user ) {
+            setUpWebSocket(this.props.user);
+        }
+    }
+
 }
 
 function mapStateToProps(state) {

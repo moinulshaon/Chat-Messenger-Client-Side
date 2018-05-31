@@ -4,6 +4,9 @@ import ChatAvatar from "./ChatAvatar";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
 
 class ActiveUsersDrawer extends Component {
 
@@ -11,8 +14,13 @@ class ActiveUsersDrawer extends Component {
         const { classes } = this.props;
         return users.map(user => {
             return (
-                <div key={user.userId} className={classes.drawerElement}>
-                    <ChatAvatar avatarName={user.userName} />
+                <div key={user.userId}>
+                    <ListItem button>
+                        <div  className={classes.drawerElement}>
+                            <ChatAvatar avatarName={user.userName} />
+                        </div>
+                    </ListItem>  
+                    <Divider />
                 </div>
             );
         });
@@ -40,9 +48,11 @@ class ActiveUsersDrawer extends Component {
                     this.props.onClose();
                 }}
             >
+            <List>
                 {activeUsers == null
                     ? this.renderLoadingIcon()
                     : this.renderActiveUsers(activeUsers)}
+                    </List>
             </Drawer>
         );
     }

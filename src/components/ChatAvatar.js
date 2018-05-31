@@ -12,7 +12,7 @@ const chatAvatar = ({ avatarName, subText, classes }) => {
                 <div className={classes.avatarMainTextContent}>
                     {avatarName}
                 </div>
-                <div className={classes.avatarSubTextContent}>{avatarName}</div>
+                <div className={classes.avatarSubTextContent}>{subText}</div>
             </div>
         </div>
     );
@@ -21,12 +21,9 @@ const chatAvatar = ({ avatarName, subText, classes }) => {
 const styles = {
     chatAvatar: {
         display: "flex",
-        height: 40,
         overflow: "hidden",
         textOverflow: "ellipsis",
         alignItems: "center",
-        padding: 5,
-        margin: 2,
         cursor: "pointer"
     },
     avatarIcon: {
