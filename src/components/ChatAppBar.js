@@ -9,7 +9,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import ActiveUsersDrawer from "./ActiveUsersDrawer";
 import { updateActiveUsers } from "../actions";
 
-import {setUpWebSocket} from "../actions";
+import {setUpWebSocket} from "../actions/socket";
 
 class ChatAppBar extends Component {
     constructor(props) {
@@ -43,7 +43,7 @@ class ChatAppBar extends Component {
                             color="inherit"
                             className={classes.content}
                         >
-                            {user}
+                            {(user)?user.userName:''}
                         </Typography>
 
                         <IconButton

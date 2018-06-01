@@ -36,7 +36,7 @@ const styles = {
     chatWindow: {
         marginLeft: 'auto',
         marginRight: 'auto',
-        width: 1000
+        width: 1000,
     }
 }
 export default withStyles(styles)(connect(mapStateToProps)(ChatWindow));

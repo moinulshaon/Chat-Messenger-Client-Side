@@ -17,9 +17,13 @@ function renderMessages(messages, classes) {
 }
 
 const chatArea = ({ classes, messages }) => {
-  return <List>{renderMessages(messages, classes)}</List>;
+  return <List className={classes.chatArea}>{renderMessages(messages, classes)}</List>;
 };
 
-const styles = {};
+const styles = {
+    chatArea: {
+        height: 700
+    }
+};
 
 export default withStyles(styles)(chatArea);
