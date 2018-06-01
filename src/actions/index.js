@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const UPDATE_ACTIVE_USERS = "update_active_users";
 export const SET_USER = "set_user";
-
+export const NEW_SOCKET_MSG = "new_socket_msg";
 
 const HOST_NAME = process.env.REACT_APP_SERVER_NAME;
 const HOST_PORT = process.env.REACT_APP_SERVER_PORT;
@@ -24,4 +24,11 @@ export function updateActiveUsers() {
         // payload: {data:[{userId: '1', userName: 'shaon'},{userId: '2', userName: 'moinul'}]}
         payload: axios.get(`http://${HOST_NAME}:${HOST_PORT}/${GET_ACTIVE_USERS}`)
     };
+}
+
+export function onMessageReceived(payload) {
+    return {
+        type: NEW_SOCKET_MSG,
+        payload: payload
+    }
 }

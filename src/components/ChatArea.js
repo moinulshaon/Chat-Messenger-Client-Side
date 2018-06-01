@@ -9,7 +9,7 @@ function renderMessages(messages, classes) {
     return (
         <ListItem>
             <div className={classes.drawerElement}>
-                <ChatAvatar avatarName={message.senderId} subText={message}/>
+                <ChatAvatar avatarName={message.senderId} subText={message.content}/>
             </div>
         </ListItem>
     );
@@ -22,7 +22,8 @@ const chatArea = ({ classes, messages }) => {
 
 const styles = {
     chatArea: {
-        height: 700
+        height: 700,
+        overflowY: "scroll"
     }
 };
 
